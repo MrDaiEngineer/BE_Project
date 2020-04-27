@@ -7,12 +7,14 @@ var router = express.Router()
 
 // 使用中间件统一返回格式
 var responseData
+var secretkey
 router.use(function(req,res,next){
     // 返回格式初始化
     responseData = {
         status: 0,
         message: ''
     }
+    secretkey = 'Mr_Dai'
     next()
 })
 
@@ -26,7 +28,6 @@ router.post('/login', function(req,res,next){
         username: username,
         password: password
     }
-    let secretkey = 'Mr_Dai'
     let token = jwt.sign(payload, secretkey, {expiresIn: 60*60*1})
 
     User.findOne({

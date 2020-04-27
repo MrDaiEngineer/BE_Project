@@ -9,12 +9,14 @@ var app = express()
 
 // 使用中间件统一返回格式
 var responseData
+var secretkey
 app.use((req,res,next)=>{
     // 返回格式初始化
     responseData = {
         status: 0,
         message: ''
     }
+    secretkey = 'Mr_Dai'
     next()
 })
 
@@ -53,7 +55,7 @@ app.use((req, res, next) => {
             next()
         }else{
             // 判断token是否有效
-            jwt.verify(token, 'Mr_Dai', (err, decode)=>{
+            jwt.verify(token, secretkey, (err, decode)=>{
                 // token过期等错误
                 if(err){
                     responseData.status = 402
