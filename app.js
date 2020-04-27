@@ -47,7 +47,7 @@ app.use((req, res, next) => {
         }else{
             // 如果没有token，并且访问非登录页面，返回未登录状态
             responseData.status = 401,
-            responseData.message = '未登录！'
+            responseData.message = '未登录!'
             res.json(responseData)
         }
     }else{
